@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.sourcetek.websocketmanager.data.model.WebSocket">
+		<field name="websocketId" type="long" />
+		<field name="name" type="String" />
+		<field name="description" type="String" />
+		<field name="port" type="int" />
+		<field name="thread_id" type="String" />
+		<field name="active" type="boolean" />
+	</model>
+</model-hints>
