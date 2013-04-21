@@ -1,4 +1,4 @@
-websocket-manager-portlet-repo
+websocket-manager-portlet
 ==============================
 
 This porlet is an utility to create websockets and manage them from liferay portal's control panel, each of them
