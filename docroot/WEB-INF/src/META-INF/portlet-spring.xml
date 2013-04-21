@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.liferay.sourcetek.websocketmanager.data.service.WebSocketLocalService" class="com.liferay.sourcetek.websocketmanager.data.service.impl.WebSocketLocalServiceImpl" />
+	<bean id="com.liferay.sourcetek.websocketmanager.data.service.WebSocketLocalServiceUtil" class="com.liferay.sourcetek.websocketmanager.data.service.WebSocketLocalServiceUtil">
+		<property name="service" ref="com.liferay.sourcetek.websocketmanager.data.service.WebSocketLocalService" />
+	</bean>
+	<bean id="com.liferay.sourcetek.websocketmanager.data.service.WebSocketService" class="com.liferay.sourcetek.websocketmanager.data.service.impl.WebSocketServiceImpl" />
+	<bean id="com.liferay.sourcetek.websocketmanager.data.service.WebSocketServiceUtil" class="com.liferay.sourcetek.websocketmanager.data.service.WebSocketServiceUtil">
+		<property name="service" ref="com.liferay.sourcetek.websocketmanager.data.service.WebSocketService" />
+	</bean>
+	<bean id="com.liferay.sourcetek.websocketmanager.data.service.persistence.WebSocketPersistence" class="com.liferay.sourcetek.websocketmanager.data.service.persistence.WebSocketPersistenceImpl" parent="basePersistence" />
+</beans>

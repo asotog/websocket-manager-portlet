@@ -1,0 +1,1 @@
+Liferay.Service.register("Liferay.Service.WebSocketManager", "com.liferay.sourcetek.websocketmanager.data.service", "websocket-manager-portlet");

@@ -1,0 +1,5 @@
+name String
+description String
+port Integer
+thread_id String
+active Boolean

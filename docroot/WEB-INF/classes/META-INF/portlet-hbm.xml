@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.sourcetek.websocketmanager.data.model.WebSocket" />
+	<class name="com.liferay.sourcetek.websocketmanager.data.model.impl.WebSocketImpl" table="WebSocketManager_WebSocket">
+		<cache usage="read-write" />
+		<id name="websocketId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="port" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="thread_id" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="active_" />
+	</class>
+</hibernate-mapping>
