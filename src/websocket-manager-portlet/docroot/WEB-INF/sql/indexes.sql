@@ -1,1 +1,0 @@
-create index IX_59355B3 on WebSocketManager_WebSocket (name);
