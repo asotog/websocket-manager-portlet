@@ -1,7 +1,11 @@
 package com.liferay.sourcetek.websocketmanager;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.sourcetek.websocketmanager.data.model.WebSocket;
@@ -204,5 +208,51 @@ public class WebSocketManagerUtil {
 		} catch (SystemException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Gets an active websocket
+	 * 
+	 * @param webSocketId
+	 * @return
+	 */
+	public static JSONArray getActiveWebSocketToJSON(long webSocketId) {
+		JSONArray websockets = JSONFactoryUtil.createJSONArray();
+		try {
+			WebSocket websocket = WebSocketLocalServiceUtil.getWebSocket(webSocketId);
+			_log.info(websocket.getActive());
+			if (websocket.getActive()) {
+				_log.info("Retrieving " + websocket);
+				JSONObject websocketJSON = JSONFactoryUtil.createJSONObject();
+				websocketJSON.put("name", websocket.getName());
+				websocketJSON.put("port", websocket.getPort());
+				websockets.put(websocketJSON);
+			}
+		} catch (PortalException e) {
+		} catch (SystemException e) {
+		}
+		return websockets;
+	}
+	
+	/**
+	 * Gets all the active websockets
+	 * 
+	 * @return
+	 */
+	public static JSONArray getAllActiveWebSocketsToJSON() {
+		JSONArray websocketsJSON = JSONFactoryUtil.createJSONArray();
+		try {
+			List<WebSocket> websockets = WebSocketLocalServiceUtil.getWebSockets(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			for (WebSocket webSocket : websockets) {
+				if (webSocket.getActive()) {
+					JSONObject websocketJSON = JSONFactoryUtil.createJSONObject();
+					websocketJSON.put("name", webSocket.getName());
+					websocketJSON.put("port", webSocket.getPort());
+					websocketsJSON.put(websocketJSON);
+				}
+			}
+		} catch (SystemException e) {
+		}
+		return websocketsJSON;
 	}
 }

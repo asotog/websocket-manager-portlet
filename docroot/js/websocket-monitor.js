@@ -2,7 +2,7 @@ AUI.add('websocket-monitor', function (A, NAME) {
 
     A.WebSocketMonitor = A.Base.create('websocket-monitor', A.Widget, [], {
         initializer: function () {
-
+            
         },
 
         destructor: function () {
@@ -19,10 +19,14 @@ AUI.add('websocket-monitor', function (A, NAME) {
 
     }, {
         ATTRS: {
-
+            websocketList: {
+                value: []
+            }
         },
         HTML_PARSER: {
 
         }
     });
+},'@VERSION@', {
+    "requires": ["widget", "base-build", "substitute", "json-stringify", "io", "json-parse", "charts"]
 });

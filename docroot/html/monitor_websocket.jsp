@@ -9,7 +9,9 @@ if (socketId != -1) {
 if (websocket != null) {
     String title = "Monitor "  + websocket.getName();
 %>
-
+<script type="text/javascript">
+var WEBSOCKET_ID = <%=websocket.getWebsocketId() %>;
+</script>
 <liferay-ui:header backURL='<%= redirectURL %>'
         localizeTitle="<%= false %>" title="<%=title %>" />
         

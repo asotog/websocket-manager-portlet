@@ -106,6 +106,19 @@ public class WebSocketManagerPortlet extends MVCPortlet {
 			jsonResponse.put(WSManagerConst.RESULT, true);
 			this.returnJSONObject(resourceResponse, jsonResponse);
 		}
+		if (cmd.equals(WSManagerConst.GET_ACTIVE)) {
+			String socketId = ParamUtil.getString(resourceRequest, WSManagerConst.SOCKET_ID);
+			JSONObject jsonResponse = JSONFactoryUtil.createJSONObject();
+			jsonResponse.put(WSManagerConst.OPERATION, WSManagerConst.GET_ACTIVE);
+			jsonResponse.put(WSManagerConst.RESULT, WebSocketManagerUtil.getActiveWebSocketToJSON(Long.valueOf(socketId)));
+			this.returnJSONObject(resourceResponse, jsonResponse);
+		}
+		if (cmd.equals(WSManagerConst.GET_ALL_ACTIVE)) {
+			JSONObject jsonResponse = JSONFactoryUtil.createJSONObject();
+			jsonResponse.put(WSManagerConst.OPERATION, WSManagerConst.GET_ALL_ACTIVE);
+			jsonResponse.put(WSManagerConst.RESULT, WebSocketManagerUtil.getAllActiveWebSocketsToJSON());
+			this.returnJSONObject(resourceResponse, jsonResponse);
+		}
 	}
 	
 	/**
@@ -127,5 +140,4 @@ public class WebSocketManagerPortlet extends MVCPortlet {
 			_log.error("Error while returning json", e);
 		}
 	}
-	
 }

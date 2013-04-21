@@ -38,37 +38,11 @@ AUI.add('websocket-manager', function (A, NAME) {
         },
         
         _toggleWebSocketStatus: function(operation, webSocketId, status, target) {
-            this._executeCmd(operation, webSocketId, function () {
+            this.get('util').executeRequest(operation, {socketId: webSocketId}, function () {
                 target.get('parentNode').get('parentNode').one('.status').set('text', status);
                 target.get('parentNode').one('.start').toggleClass('hidden');
                 target.get('parentNode').one('.stop').toggleClass('hidden');
-            });
-        },
-        
-        /**
-         * Executes an ajax request
-         * 
-         * @param cmd
-         * @param webSocketId
-         * @param callback
-         */
-        _executeCmd: function (cmd, webSocketId, callback) {
-            A.io(this.get('resourceUrl'), {
-                method: 'GET',
-                data: {
-                    cmd: cmd,
-                    socketId: webSocketId
-                },
-                on: {
-                    success: function (id, o) {
-                        var jsonResponse = A.JSON.parse(o.response);
-                        callback(jsonResponse.result);
-                    }
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            }, this.get('resourceUrl'));
         },
 
         syncUI: function () {
@@ -80,7 +54,11 @@ AUI.add('websocket-manager', function (A, NAME) {
             resourceUrl: {
                 value: null
             },
-
+            
+            util: {
+                value: new A.WebSocketUtility()
+            },
+            
             START: {
                 value: 'start'
             },
@@ -107,5 +85,5 @@ AUI.add('websocket-manager', function (A, NAME) {
     });
 
 }, '@VERSION@', {
-    "requires": ["widget", "base-build", "substitute", "json-stringify", "io", "json-parse"]
+    "requires": ["widget", "base-build", "substitute", "websocket-utility"]
 });
