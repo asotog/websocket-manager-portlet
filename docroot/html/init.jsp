@@ -26,3 +26,6 @@ PortletURL portletURL = renderResponse.createRenderURL();
 pageContext.setAttribute("portletURL", portletURL);
 String redirectURL = ParamUtil.getString(request, "redirect");
 %>
+<script type="text/javascript">
+var WEBSOCKET_MANAGER_RESOURCE_URL = "<portlet:resourceURL />";
+</script>

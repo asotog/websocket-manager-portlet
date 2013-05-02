@@ -3,9 +3,6 @@
 <%
 List<WebSocket> websocketsList = (List<WebSocket>) request.getAttribute("websockets-list");
 %>
-<script type="text/javascript">
-var WEBSOCKET_MANAGER_RESOURCE_URL = "<portlet:resourceURL />";
-</script>
 <div id="websocket-manager-container">
 	<aui:form action="<%= portletURL.toString() %>" method="get" name="fm">
 		<%@ include file="/html/toolbar.jsp"%>

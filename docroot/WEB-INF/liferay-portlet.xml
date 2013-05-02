@@ -9,6 +9,7 @@
 		<instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/websocket-util.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/websocket-client.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/websocket-manager.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/websocket-monitor.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
