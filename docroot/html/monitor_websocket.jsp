@@ -5,46 +5,30 @@ WebSocket websocket = null;
 long socketId = ParamUtil.getLong(request, "socketId", -1);
 if (socketId != -1) {
     websocket = WebSocketManagerUtil.getWebSocket(socketId);
-}
-if (websocket != null) {
-    String title = "Monitor "  + websocket.getName();
+} 
 %>
-<script type="text/javascript">
-var WEBSOCKET_ID = <%=websocket.getWebsocketId() %>;
-</script>
-<liferay-ui:header backURL='<%= redirectURL %>'
-        localizeTitle="<%= false %>" title="<%=title %>" />
+<c:if test="<%= (websocket != null) %>">
+	<%
+	    String title = "Monitor "  + websocket.getName();
+	%>
+	<c:choose>
+	<c:when test="<%= websocket.isActive() %>">
+	   <script type="text/javascript">
+        var WEBSOCKET_ID = <%=websocket.getWebsocketId() %>;
+        </script>
+        <liferay-ui:header backURL='<%= redirectURL %>'
+                localizeTitle="<%= false %>" title="<%=title %>" />
+                
+        <div id="websocket-monitor-container"></div>
         
-<div id="websocket-monitor-container">
-    
-</div>
+	</c:when>
+	<c:otherwise>
+	
+	   <div class="portlet-msg-info">This websocket server is not running.</div>
+	
+	</c:otherwise>
+	</c:choose>
 
-<script type="text/javascript">
-AUI().use('charts', function (A) {
-    var myDataValues = [{
-            category: "5/1/2010 12:00pm",
-            values: 2000
-        }, {
-            category: "5/2/2010 12:10pm",
-            values: 50
-        }, {
-            category: "5/3/2010",
-            values: 400
-        }, {
-            category: "5/4/2010",
-            values: 200
-        }, {
-            category: "5/5/2010",
-            values: 5000
-        }
-    ];
-
-    var mychart = new A.Chart({
-        dataProvider: myDataValues,
-        render: "#websocket-monitor-container"
-    });
-});
-</script>
-<% } %>
+</c:if>
 
 

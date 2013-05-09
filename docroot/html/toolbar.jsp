@@ -11,6 +11,11 @@ String toolbarItem = ParamUtil.getString(request, "toolbarItem", "view-all");
 	    <portlet:param name="toolbarItem" value="add" />
 	    <portlet:param name="jspPage" value="/html/add_websocket.jsp" />
 	</portlet:renderURL>
+	<portlet:renderURL var="monitorAllWebSocketUrl">
+        <portlet:param name="redirect" value="<%= persistentURL.toString() %>" />
+        <portlet:param name="toolbarItem" value="add" />
+        <portlet:param name="jspPage" value="/html/monitor_all_websocket.jsp" />
+    </portlet:renderURL>
 
 
 	<span class="lfr-toolbar-button view-button <%= toolbarItem.equals("view-all") ? "current" : StringPool.BLANK %>">
@@ -20,7 +25,7 @@ String toolbarItem = ParamUtil.getString(request, "toolbarItem", "view-all");
         <a href="<%=addWebSocketUrl %>">Add WebSocket</a>
     </span> 
     <span class="lfr-toolbar-button monitor-button <%= toolbarItem.equals("monitor-all") ? "current" : StringPool.BLANK %>">
-        <a href="<%=addWebSocketUrl %>">Monitor All</a>
+        <a href="<%=monitorAllWebSocketUrl %>">Monitor All</a>
     </span> 
 
 
